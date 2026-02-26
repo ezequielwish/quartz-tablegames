@@ -11,6 +11,10 @@ def set_default():
 
     return autunita + quartzo + rubelita + esmeralda + safira + rubi + ambar
 
+def clean_players_cart(players):
+    for player in players:
+        player.clean_cart()
+
 cristals = set_default()
 
 player1 = Player(name="Eze")
@@ -41,7 +45,7 @@ for day in range(5):
                             player.alive = False
                             alive_players.remove(player)
                             cristals += player.cart
-                            player.cart.clear()
+                            player.clean_cart()
                             print(f"\033[31m{player.name} se acidentou e seus cristais estão espalhados pela mina!\033[0m")
                 elif answer == "S":
                     player.alive = False
@@ -56,4 +60,5 @@ for day in range(5):
         round += 1
     cristals = set_default()
     alive_players = players[::]
+    clean_players_cart(players)
     # venda

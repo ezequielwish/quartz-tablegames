@@ -14,6 +14,9 @@ class Player:
         print(self.name, "minerou", cristal)
         return cristal
 
-    def use_card():
+    def use_card(self):
         pass
+    
+    def clean_cart(self):
+        self.cart.clear()
 
