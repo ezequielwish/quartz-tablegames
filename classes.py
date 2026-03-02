@@ -6,6 +6,8 @@ class Player:
         self.cart = []   # Cristais coletados na rodada atual
         self.cards = []  # Cartas especiais (não implementadas ainda)
         self.alive = True  # Indica se ainda está na mina
+        self.wallet = 0
+        self.temp_wallet = 0
     
     def mine(self, cristals):
         # Embaralha a lista para evitar previsibilidade
@@ -16,8 +18,13 @@ class Player:
         # Escolhe um cristal aleatório da pool disponível
         cristal = choice(cristals)
 
-        print(self.name, "minerou", cristal)
+        print(self.name, "minerou", cristal[0])
         return cristal
+
+    def cart_add(self, cristal):
+        self.cart.append(cristal[0])
+        self.temp_wallet += cristal[1]
+        print(self.temp_wallet)
 
     def use_card(self):
         # Placeholder para sistema de cartas futuras
@@ -27,3 +34,5 @@ class Player:
         # Remove todos os cristais do carrinho (reset de rodada)
         self.cart.clear()
         
+    def clean_temp_wallet(self):
+        self.temp_wallet = 0

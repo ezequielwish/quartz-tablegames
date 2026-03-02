@@ -2,13 +2,13 @@ from classes import Player
 
 def set_default():
     # Cria a lista inicial de cristais com quantidades fixas
-    autunita = ["Autunita" for c in range(18)]
-    quartzo = ["Quartzo" for c in range(15)]
-    rubelita = ["Rubelita" for c in range(12)]
-    esmeralda = ["Esmeralda" for c in range(10)]
-    safira = ["Safira" for c in range(7)]
-    rubi = ["Rubi" for c in range(4)]
-    ambar = ["Âmbar" for c in range(2)]
+    autunita = [("Autunita", 0) for c in range(18)]
+    quartzo = [("Quartzo", 1) for c in range(15)]
+    rubelita = [("Rubelita", 2) for c in range(12)]
+    esmeralda = [("Esmeralda", 3) for c in range(10)]
+    safira = [("Safira", 4) for c in range(7)]
+    rubi = [("Rubi", 6) for c in range(4)]
+    ambar = [("Âmbar", 8) for c in range(2)]
 
     # Junta todos em uma única lista (pool da mina)
     return autunita + quartzo + rubelita + esmeralda + safira + rubi + ambar
@@ -52,7 +52,7 @@ for day in range(5):
                 if answer == "M":
                     # Jogador minera um cristal aleatório
                     cristal = player.mine(cristals)
-                    player.cart.append(cristal)
+                    player.cart_add(cristal)
                     cristals.remove(cristal)
 
                     # Regra especial: Autunita repetida mata o jogador
@@ -60,11 +60,10 @@ for day in range(5):
                         if player.cart.count(cristal) > 1:
                             player.alive = False
                             alive_players.remove(player)
-
+                            player.clean_temp_wallet()
                             # Cristais voltam para a mina
                             cristals += player.cart
                             player.clean_cart()
-
                             print(f"\033[31m{player.name} se acidentou e seus cristais estão espalhados pela mina!\033[0m")
 
                 elif answer == "S":
@@ -89,4 +88,3 @@ for day in range(5):
     clean_players_cart(players)
 
     # TODO: implementar fase de venda
-    
