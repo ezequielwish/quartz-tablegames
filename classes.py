@@ -36,3 +36,4 @@ class Player:
         
     def clean_temp_wallet(self):
         self.temp_wallet = 0
+        

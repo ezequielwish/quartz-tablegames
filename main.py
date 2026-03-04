@@ -87,4 +87,3 @@ for day in range(5):
     alive_players = players[::]
     clean_players_cart(players)
 
-    # TODO: implementar fase de venda
